@@ -69,3 +69,18 @@ public class Bellmanford {
 
     }
 }
+
+
+Enter the no.of vertices
+3
+Enter the weight matrix
+0 30 20
+30 0 10
+20 10 0
+enter the source vertex
+1
+vertex1->cost=0parent=-1
+vertex2->cost=30parent=1
+vertex3->cost=20parent=1
+
+ No negative weight cycle
