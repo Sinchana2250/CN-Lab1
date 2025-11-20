@@ -86,3 +86,13 @@ public class RSAdemo {
     }
     
 }
+enter the two large prime numbers for p and q
+17 19
+value of n323
+ value of z is:288
+encryption key e is5
+public key is(e,n):5,323
+Descryption key d is:173
+private key is (d,n)=>173,323
+enter the message for encryption 
+Hello
