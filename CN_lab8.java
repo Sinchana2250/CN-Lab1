@@ -65,3 +65,14 @@ $ns at 0.2 "$ftp start"
 $ns at 2.5 "$ftp stop" 
 $ns at 3.0 "finish" 
 $ns run
+
+  0.25-0
+  0.50-0
+  0.75-0
+  1.00-0
+  1.25-9
+  1.50-12
+  1.75-15
+  2.00-13
+sudo ns scl.tcl
+  xgraph -x "bandwidth" -y "numberofpackets dropped" 23cs158
