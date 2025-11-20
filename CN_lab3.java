@@ -63,5 +63,15 @@ public class CRCDemo {
 	}
 	
 	
-	
+	Enter the message to be transferred:
+0101010
+Predefined Generator Polynomial is:1000100000100001
+Zero extended message is:0101010000000000000000
+CheckSum is:100010100101000
+Final codeword generated is:0101010100010100101000
 
+Test Error detection 1(yes) 0(No)?:
+1
+Enter position where error is to inserted: 
+4
+Errorneous data:0101110100010100101000
