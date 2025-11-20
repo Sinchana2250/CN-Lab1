@@ -55,3 +55,15 @@ public class Leaky {
     }
     }
 }
+
+
+enter the number of packets:
+5
+enter the bucket capacity:
+4
+enter the output rate :
+3
+enter the size of packetes:
+2 4 1 5 3
+
+
