@@ -1,26 +1,21 @@
 s3.awk
 BEGIN {
 }
-
 {
 if ( $6 == "cwnd_" ) {
 printf ( "%f\t%f\n" , $1 , $7 );
 }
 }
-
 END {
 }
 
 s3.tcl
 
 set ns [new Simulator]
-
 set tracefile [open s3.tr w]
 set namfile [open s3.nam w]
 $ns trace-all $tracefile
 $ns namtrace-all $namfile
-
-
 proc finish {} {
 global ns tracefile namfile
 $ns flush-trace
@@ -62,7 +57,6 @@ $ns make-lan "$n3 $n4 $n5 $n6 $n7 $n8" 512Kb 40ms LL Queue/DropTail Mac/802_3
 
 
 $ns duplex-link-op $n1 $n0 orient right-down
-
 $ns duplex-link-op $n2 $n0 orient right-up
 $ns duplex-link-op $n0 $n3 orient right
 
