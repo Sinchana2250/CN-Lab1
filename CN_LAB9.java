@@ -8,23 +8,20 @@ if (event == "d") {
 count++;
 }
 }
-
 END {
 printf("No of packets dropped: %d\n", count);
 }
+
 S2.tcl
-# s2.tcl
-# Create a simulator object
+
 set ns [new Simulator]
 
-# Open NAM and trace files
 set namfile [open s2.nam w]
 $ns namtrace-all $namfile
 
 set tracefile [open s2.tr w]
 $ns trace-all $tracefile
 
-# Define a finish procedure
 proc finish {} {
 global ns namfile tracefile
 $ns flush-trace
@@ -45,7 +42,7 @@ set n4 [$ns node]
 set n5 [$ns node]
 set n6 [$ns node]
 
-# Create duplex links
+
 $ns duplex-link $n0 $n1 1Mb 10ms DropTail
 $ns duplex-link $n0 $n2 1Mb 10ms DropTail
 $ns duplex-link $n0 $n3 1.75Mb 20ms DropTail
