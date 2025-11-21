@@ -10,17 +10,17 @@ printf ( "%f\t%f\n" , $1 , $7 );
 
 END {
 }
+
 s3.tcl
-# Create a simulator object
+
 set ns [new Simulator]
 
-# Create trace and nam files
 set tracefile [open s3.tr w]
 set namfile [open s3.nam w]
 $ns trace-all $tracefile
 $ns namtrace-all $namfile
 
-# Define finish procedure
+
 proc finish {} {
 global ns tracefile namfile
 $ns flush-trace
@@ -31,7 +31,7 @@ exit 0
 
 }
 
-# Create nodes
+
 set n0 [$ns node]
 set n1 [$ns node]
 set n2 [$ns node]
@@ -42,7 +42,7 @@ set n6 [$ns node]
 set n7 [$ns node]
 set n8 [$ns node]
 
-# Assign colors for visualization
+
 $ns color 1 Blue
 $ns color 2 Red
 
@@ -52,24 +52,24 @@ $n7 color Blue
 $n8 shape hexagon
 $n8 color Red
 
-# Create duplex links between nodes
+
 $ns duplex-link $n1 $n0 2Mb 10ms DropTail
 $ns duplex-link $n2 $n0 2Mb 10ms DropTail
 $ns duplex-link $n0 $n3 1Mb 20ms DropTail
 
-# Create LAN using LL, Queue/DropTail, Mac/802_3
+
 $ns make-lan "$n3 $n4 $n5 $n6 $n7 $n8" 512Kb 40ms LL Queue/DropTail Mac/802_3
 
-# Orient links in NAM
+
 $ns duplex-link-op $n1 $n0 orient right-down
 
 $ns duplex-link-op $n2 $n0 orient right-up
 $ns duplex-link-op $n0 $n3 orient right
 
-# Set queue limit
+
 $ns queue-limit $n0 $n3 20
 
-# --- TCP VEGAS Connection ---
+
 set tcp1 [new Agent/TCP/Vegas]
 $ns attach-agent $n1 $tcp1
 set sink1 [new Agent/TCPSink]
@@ -80,12 +80,12 @@ $ftp1 attach-agent $tcp1
 $tcp1 set class_ 1
 $tcp1 set packetSize_ 55
 
-# Trace congestion window (TCP1)
+
 set tfile1 [open cwnd1.tr w]
 $tcp1 attach $tfile1
 $tcp1 trace cwnd_
 
-# --- TCP RENO Connection ---
+
 set tcp2 [new Agent/TCP/Reno]
 $ns attach-agent $n2 $tcp2
 set sink2 [new Agent/TCPSink]
@@ -96,21 +96,17 @@ $ftp2 attach-agent $tcp2
 $tcp2 set class_ 2
 $tcp2 set packetSize_ 55
 
-# Trace congestion window (TCP2)
+
 set tfile2 [open cwnd2.tr w]
 $tcp2 attach $tfile2
 $tcp2 trace cwnd_
 
-# Start and stop FTP transfers
+
 $ns at 0.5 "$ftp1 start"
 $ns at 1.0 "$ftp2 start"
 $ns at 5.0 "$ftp2 stop"
 $ns at 5.0 "$ftp1 stop"
-
-# Call finish procedure
 $ns at 5.5 "finish"
-
-# Run simulation
 $ns run
 
 
