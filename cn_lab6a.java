@@ -2,9 +2,6 @@ package com.smvitm.cnlab;
 import java.net.*;
 import java.io.*;
 public class SocketServer {
-
-  
-    
         public static void main(String[] args) throws Exception
         {
             ServerSocket servSocket=new ServerSocket(4000);
